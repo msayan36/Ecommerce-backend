@@ -2,9 +2,9 @@ import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/user.model.js";
 
-// Method       POST
-// Route       /register
-// Permission  Public
+// @Desc        Register User
+// @Route       POST /api/v1/users/register
+// @Permission  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, username, profileDesc, profile_pic } =
     req.body;
@@ -45,9 +45,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Method       POST
-// Route       /login
-// Permission  Public
+// @Desc        Login User
+// @Route       POST /api/v1/users/login
+// @Permission  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { loginId, password } = req.body;
 
@@ -75,9 +75,9 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Method       GET
-// Route       /logout
-// Permission  Public
+// @Desc        Logout User
+// @Route       GET /api/v1/users/logout
+// @Permission  Public
 const logoutUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
@@ -89,9 +89,9 @@ const logoutUser = asyncHandler(async (req, res) => {
   });
 });
 
-// Method       GET
-// Route       /me
-// Permission  Protected
+// @Desc        Get User Profile Information
+// @Route       GET /api/v1/users/me
+// @Permission  Protected
 const getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -113,9 +113,9 @@ const getMe = asyncHandler(async (req, res) => {
   }
 });
 
-// Method       PUT
-// Route       /me
-// Permission  Protected
+// @Desc        Update User Profile
+// @Route       PUT /api/v1/users/me
+// @Permission  Protected
 const updateMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 

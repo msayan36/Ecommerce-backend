@@ -4,6 +4,7 @@ config();
 import userRoutes from "./routes/user.routes.js";
 import connect from "./db/connection.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import { errorHandler, notFound } from "./middleware/error.middleware.js";
 
 const port = process.env.PORT || 5000;
@@ -19,6 +20,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Cookie Parser Middleware
 app.use(cookieParser());
+
+// Cors Middleware
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 // Base Route
 app.get("/", (req, res) => {
