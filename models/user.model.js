@@ -24,6 +24,7 @@ const userSchema = mongoose.Schema(
     profileDesc: {
       type: String,
       maxLength: 200,
+      default: null,
     },
     profile_pic: {
       type: String,
