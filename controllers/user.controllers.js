@@ -2,12 +2,23 @@ import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/user.model.js";
 
+const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
+
 // @Desc        Register User
 // @Route       POST /api/v1/users/register
 // @Permission  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, username, profileDesc, profile_pic } =
     req.body;
+
+  if (validateEmail(email) === null) {
+    res.status(400);
+    throw new Error("Email is not a valid one");
+  }
 
   const userExists = await User.findOne({ email });
 
