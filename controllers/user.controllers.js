@@ -27,7 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User Already Exists");
   }
 
-  let userExists = await User.findOne({ username });
+  userExists = await User.findOne({ username });
 
   if (userExists) {
     res.status(400);
