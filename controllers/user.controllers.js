@@ -97,11 +97,12 @@ const loginUser = asyncHandler(async (req, res) => {
 // @Route       GET /api/v1/users/logout
 // @Permission  Public
 const logoutUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", {
-    httpOnly: true,
-    sameSite: "none",
-    expires: new Date(0),
-  });
+  // res.cookie("jwt", "", {
+  //   httpOnly: true,
+  //   sameSite: "none",
+  //   expires: new Date(0),
+  // });
+  res.clearCookie("jwt");
 
   res.status(200).json({
     message: "Logged out Successfully",
