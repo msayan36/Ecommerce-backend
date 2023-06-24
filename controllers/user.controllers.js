@@ -139,9 +139,14 @@ const getMe = asyncHandler(async (req, res) => {
 const updateMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
-  if (validateEmail(email) === null) {
-    res.status(400);
-    throw new Error("Email is not a valid one");
+  const { name, email, password, username, profileDesc, profile_pic } =
+    req.body;
+
+  if (email) {
+    if (validateEmail(email) === null) {
+      res.status(400);
+      throw new Error("Email is not a valid one");
+    }
   }
 
   if (user) {
