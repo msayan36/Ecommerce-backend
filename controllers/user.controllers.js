@@ -176,4 +176,29 @@ const updateMe = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, logoutUser, getMe, updateMe };
+// @Desc        Get Other User Profile
+// @Route       PUT /api/v1/users/:username
+// @Permission  Protected
+const getUser = asyncHandler(async (req, res) => {
+  const { username } = req.params;
+  const user = await User.findOne({ username });
+
+  if (user) {
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      profileDesc: user.profileDesc,
+      profile_pic: user.profile_pic,
+      products_count: user.products_count,
+      followers: user.followers,
+      following: user.following,
+    });
+  } else {
+    res.status(400);
+    throw new Error("User not Found");
+  }
+});
+
+export { registerUser, loginUser, logoutUser, getMe, updateMe, getUser };

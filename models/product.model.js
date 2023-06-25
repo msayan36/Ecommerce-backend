@@ -6,13 +6,17 @@ const productSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
     },
+    username: {
+      type: String,
+      required: true,
+    },
     productName: {
       type: String,
       required: true,
     },
     productImg: {
       type: String,
-      required: true,
+      default: "Default Pic Link",
     },
     productDesc: {
       type: String,

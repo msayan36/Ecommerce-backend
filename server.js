@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 config();
 import userRoutes from "./routes/user.routes.js";
+import productRoutes from "./routes/product.routes.js";
 import connect from "./db/connection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/products", productRoutes);
 
 // Error Middleware
 app.use(notFound);
