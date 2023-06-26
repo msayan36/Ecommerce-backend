@@ -13,16 +13,20 @@ const addProduct = asyncHandler(async (req, res) => {
 
   // const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-  const { username, _id } = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id);
 
   const product = await Product.create({
-    user: _id,
-    username,
+    user: user._id,
+    username: user.username,
     productName,
     productDesc,
     price,
     productImg,
   });
+
+  user.products_count.push(product._id);
+
+  await user.save();
 
   if (product) {
     res.status(201).json(product);
