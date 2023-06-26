@@ -22,16 +22,16 @@ const productSchema = mongoose.Schema(
       type: String,
       default: "No Description Provided",
     },
-    rating: [
-      {
-        value: Number,
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
+    rating: {
+      type: [
+        {
+          value: Number,
+          username: String,
+          review: String,
         },
-        review: String,
-      },
-    ],
+      ],
+      default: [],
+    },
     price: {
       type: Number,
       required: true,
