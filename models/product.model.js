@@ -29,6 +29,7 @@ const productSchema = mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "users",
         },
+        review: String,
       },
     ],
     price: {
