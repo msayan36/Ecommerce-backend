@@ -45,7 +45,7 @@ const getFollowing = asyncHandler(async (req, res) => {
 // @Route       GET /api/v1/feed/suggested
 // @Permission  Protected
 const getSuggested = asyncHandler(async (req, res) => {
-  const suggestedUsers = await User.find();
+  const suggestedUsers = await User.find().limit(5);
 
   res.status(200).json(suggestedUsers);
 });
