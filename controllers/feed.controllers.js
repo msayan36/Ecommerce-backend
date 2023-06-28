@@ -41,4 +41,13 @@ const getFollowing = asyncHandler(async (req, res) => {
   });
 });
 
-export { getFeed, getFollowing };
+// @Desc        Get Suggested User
+// @Route       GET /api/v1/feed/suggested
+// @Permission  Protected
+const getSuggested = asyncHandler(async (req, res) => {
+  const suggestedUsers = await User.find();
+
+  res.status(200).json(suggestedUsers);
+});
+
+export { getFeed, getFollowing, getSuggested };
