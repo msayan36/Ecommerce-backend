@@ -6,11 +6,17 @@ import User from "../models/user.model.js";
 // @Route       GET /api/v1/feed
 // @Permission  Protected
 const getFeed = asyncHandler(async (req, res) => {
-  let products = await Product.find();
+  let excludedIds = [req.user._id];
 
-  products = products.map((product) => {
-    if (product.username !== req.user.username) return product;
+  let products = await Product.find({
+    user: {
+      $nin: excludedIds,
+    },
   });
+
+  // products = products.map((product) => {
+  //   if (product.username !== req.user.username) return product;
+  // });
 
   res.status(200).json({
     products,
