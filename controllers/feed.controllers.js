@@ -12,7 +12,7 @@ const getFeed = asyncHandler(async (req, res) => {
     user: {
       $nin: excludedIds,
     },
-  });
+  }).sort({ createdAt: -1 });
 
   // products = products.map((product) => {
   //   if (product.username !== req.user.username) return product;
