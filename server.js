@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import feedRoutes from "./routes/feed.routes.js";
 import searchRoutes from "./routes/search.routes.js";
+import followRoutes from "./routes/follow.routes.js";
 import connect from "./db/connection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -44,6 +45,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/feed", feedRoutes);
 app.use("/api/v1/search", searchRoutes);
+app.use("/api/v1/follow", followRoutes);
 
 // Error Middleware
 app.use(notFound);
