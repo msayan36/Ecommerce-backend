@@ -8,6 +8,7 @@ import searchRoutes from "./routes/search.routes.js";
 import followRoutes from "./routes/follow.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import wishlistRoutes from "./routes/wishlist.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
 import connect from "./db/connection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -50,6 +51,7 @@ app.use("/api/v1/search", searchRoutes);
 app.use("/api/v1/follow", followRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/wishlist", wishlistRoutes);
+app.use("/api/v1/create-checkout-session", paymentRoutes);
 
 // Error Middleware
 app.use(notFound);
