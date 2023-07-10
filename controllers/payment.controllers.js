@@ -35,8 +35,16 @@ const payment = asyncHandler(async (req, res) => {
         quantity: 1,
       };
     }),
-    success_url: `${process.env.FRONTEND_URL}/success`,
-    cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+    success_url: `${
+      process.env.FRONTEND_URL === "development"
+        ? process.env.FRONTEND_URL
+        : process.env.FRONTEND_DEP
+    }/success`,
+    cancel_url: `${
+      process.env.FRONTEND_URL === "development"
+        ? process.env.FRONTEND_URL
+        : process.env.FRONTEND_DEP
+    }/cancel`,
   });
   res.json({ url: session.url });
 });
