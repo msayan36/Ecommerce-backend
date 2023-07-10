@@ -33,30 +33,35 @@ const userSchema = mongoose.Schema(
     products_count: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: "products",
       },
     ],
     followers: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: "users",
       },
     ],
     following: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: "users",
       },
     ],
     cart: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: "products",
       },
     ],
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        unique: true,
         ref: "products",
       },
     ],
