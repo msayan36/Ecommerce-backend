@@ -28,7 +28,8 @@ const userSchema = mongoose.Schema(
     },
     profile_pic: {
       type: String,
-      default: "Link to default image",
+      default:
+        "https://res.cloudinary.com/blank36/image/upload/v1689076740/profiles_tpebws.png",
     },
     products_count: [
       {
