@@ -10,10 +10,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    profile_pic: {
-      type: String,
-      required: true,
-    },
     productName: {
       type: String,
       required: true,
