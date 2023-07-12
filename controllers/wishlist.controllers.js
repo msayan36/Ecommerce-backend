@@ -25,4 +25,19 @@ const getWishlist = asyncHandler(async (req, res) => {
   res.status(200).json(products);
 });
 
-export { addToWishlist, getWishlist };
+// @Desc        POST Remove Single Wishlist Item by Id
+// @Route       POST /api/v1/wishlist/remove-singleWishlistItem
+// @Permission  Protected
+
+const removeSingleWishlistItem = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const pdtId = req.body.pdtId;
+
+  const finalWishlist = user.wishlist.filter((item) => item != pdtId);
+  user.wishlist = finalWishlist;
+  const newUser = await user.save();
+
+  res.status(200).json(newUser);
+});
+
+export { addToWishlist, getWishlist, removeSingleWishlistItem };

@@ -25,4 +25,29 @@ const getCart = asyncHandler(async (req, res) => {
   res.status(200).json(products);
 });
 
-export { addToCart, getCart };
+// @Desc        GET Remove All Cart Items
+// @Route       GET /api/v1/cart/remove-fullCart
+// @Permission  Protected
+const removeAllCart = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  user.cart = [];
+  const newUser = await user.save();
+
+  res.status(200).json(newUser);
+});
+
+// @Desc        POST Remove Single Cart Item by Id
+// @Route       POST /api/v1/cart/remove-singleCartItem
+// @Permission  Protected
+const removeSingleCartItem = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const pdtId = req.body.pdtId;
+
+  const finalCart = user.cart.filter((item) => item != pdtId);
+  user.cart = finalCart;
+  const newUser = await user.save();
+
+  res.status(200).json(newUser);
+});
+
+export { addToCart, getCart, removeAllCart, removeSingleCartItem };
