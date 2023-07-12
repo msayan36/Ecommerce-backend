@@ -9,6 +9,7 @@ import followRoutes from "./routes/follow.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import wishlistRoutes from "./routes/wishlist.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import imageUploadRoutes from "./routes/imageUpload.routes.js";
 import connect from "./db/connection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -22,7 +23,7 @@ const app = express();
 connect();
 
 // Body Parser Middleware
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 // Cookie Parser Middleware
@@ -52,6 +53,7 @@ app.use("/api/v1/follow", followRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/wishlist", wishlistRoutes);
 app.use("/api/v1/create-checkout-session", paymentRoutes);
+app.use("/api/v1/uploadImage", imageUploadRoutes);
 
 // Error Middleware
 app.use(notFound);
