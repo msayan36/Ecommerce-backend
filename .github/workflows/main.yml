@@ -27,3 +27,16 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test --if-present
+    
+  deploy:
+  
+    name: Deloy
+    needs: [build] 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY }}
